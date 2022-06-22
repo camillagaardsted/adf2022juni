@@ -30,7 +30,14 @@
 							"name": "Set variable2",
 							"type": "SetVariable",
 							"dependsOn": [],
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "currentTable",
+								"value": {
+									"value": "@concat(variables('schemaName'),'.',item())",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
@@ -53,8 +60,8 @@
 					"'Product'}"
 				]
 			},
-			"tableList": {
-				"type": "Array"
+			"currentTable": {
+				"type": "String"
 			}
 		},
 		"annotations": []
