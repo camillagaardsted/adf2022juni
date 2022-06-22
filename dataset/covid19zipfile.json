@@ -2,7 +2,7 @@
 	"name": "covid19zipfile",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "http til ssi",
+			"referenceName": "ssi_website",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
