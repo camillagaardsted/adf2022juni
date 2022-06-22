@@ -1,0 +1,160 @@
+{
+	"name": "ssi pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get ssi web page",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://covid19.ssi.dk/overvagningsdata/download-fil-med-overvaagningdata",
+					"method": "GET"
+				}
+			},
+			{
+				"name": "Set webpagecontent",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get ssi web page",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "webpageContent",
+					"value": {
+						"value": "@activity('Get ssi web page').output.Response",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set zipfilename",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set current date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "zipfilename",
+					"value": {
+						"value": "@substring(variables('webpageContent'),indexof(variables('webpageContent'),concat('overvaagningsdata-covid19-',variables('currentDate'),'-')),add(length(concat('overvaagningsdata-covid19-',variables('currentDate'),'-')),4))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Save data in datalake",
+				"description": "test",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Set zipfilename",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings"
+							}
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "covid19zipfile",
+						"type": "DatasetReference",
+						"parameters": {
+							"dailyfilename": {
+								"value": "@variables('zipfilename')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "csv_files_in_datalake",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Set current date",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set webpagecontent",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "currentDate",
+					"value": {
+						"value": "@formatDateTime(adddays(utcnow(),-2),'ddMMyyyy')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"webpageContent": {
+				"type": "String"
+			},
+			"zipfilename": {
+				"type": "String"
+			},
+			"currentDate": {
+				"type": "String",
+				"defaultValue": "12082021"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-08-13T08:36:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
