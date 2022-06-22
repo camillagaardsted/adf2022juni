@@ -7,6 +7,33 @@
 				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": []
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('tableNames')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Set variable2",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": []
+						}
+					]
+				}
 			}
 		],
 		"variables": {
@@ -25,6 +52,9 @@
 					"'Booking'",
 					"'Product'}"
 				]
+			},
+			"tableList": {
+				"type": "Array"
 			}
 		},
 		"annotations": []
