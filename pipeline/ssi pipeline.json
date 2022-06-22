@@ -112,6 +112,12 @@
 							}
 						}
 					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ssicsvfiles",
+						"type": "DatasetReference"
+					}
 				]
 			},
 			{
