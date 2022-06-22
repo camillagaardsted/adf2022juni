@@ -3,22 +3,9 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Set variable1",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": []
-			},
-			{
 				"name": "ForEach1",
 				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Set variable1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
@@ -50,14 +37,14 @@
 			},
 			"truncateFirst": {
 				"type": "Boolean",
-				"defaultValue": "1"
+				"defaultValue": true
 			},
 			"tableNames": {
 				"type": "Array",
 				"defaultValue": [
-					"{'Customer'",
-					"'Booking'",
-					"'Product'}"
+					"Customer",
+					"Booking",
+					"Product"
 				]
 			},
 			"currentTable": {
