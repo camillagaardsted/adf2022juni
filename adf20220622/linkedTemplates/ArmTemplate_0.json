@@ -421,7 +421,7 @@
 						"typeProperties": {
 							"variableName": "currentDate",
 							"value": {
-								"value": "@formatDateTime(adddays(utcnow(),-2),'ddMMyyyy')",
+								"value": "@formatDateTime(adddays(utcnow(),-0),'ddMMyyyy')",
 								"type": "Expression"
 							}
 						}
@@ -653,6 +653,44 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Hver eftermiddag 1405')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ssi pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2022-06-22T11:34:00",
+						"timeZone": "Romance Standard Time",
+						"schedule": {
+							"minutes": [
+								5
+							],
+							"hours": [
+								14
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ssi pipeline')]"
 			]
 		}
 	]
