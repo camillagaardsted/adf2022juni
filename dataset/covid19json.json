@@ -1,0 +1,20 @@
+{
+	"name": "covid19json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalake20220620",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "overvaagningsdata-covid19-21062022-z94t",
+				"fileSystem": "covid19datadk"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,11 @@
+{
+	"name": "datalake20220620",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://datalakesu20220620.dfs.core.windows.net/"
+		}
+	}
+}

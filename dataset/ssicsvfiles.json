@@ -1,0 +1,18 @@
+{
+	"name": "ssicsvfiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalake20220620",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "covid19datadk"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

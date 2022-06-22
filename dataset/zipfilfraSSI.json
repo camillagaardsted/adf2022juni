@@ -1,0 +1,21 @@
+{
+	"name": "zipfilfraSSI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ssi_website",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "overvaagningsdata-covid19-21062022-z94t"
+			},
+			"compression": {
+				"type": "ZipDeflate"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
