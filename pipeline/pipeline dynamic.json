@@ -34,7 +34,7 @@
 							"typeProperties": {
 								"variableName": "currentTable",
 								"value": {
-									"value": "@concat(variables('schemaName'),'.',item())",
+									"value": "@concat(variables('schemaName'),'.')",
 									"type": "Expression"
 								}
 							}
