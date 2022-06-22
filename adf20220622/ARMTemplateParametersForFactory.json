@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf20220622"
+		},
+		"datalake20220620_properties_typeProperties_url": {
+			"value": "https://datalakesu20220620.dfs.core.windows.net/"
+		},
+		"ssi_website_properties_typeProperties_url": {
+			"value": "https://files.ssi.dk/covid19/overvagning/data/"
+		}
+	}
+}
