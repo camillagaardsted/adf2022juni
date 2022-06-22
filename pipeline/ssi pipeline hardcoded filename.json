@@ -1,5 +1,5 @@
 {
-	"name": "ssi pipeline",
+	"name": "ssi pipeline hardcoded filename",
 	"properties": {
 		"activities": [
 			{
