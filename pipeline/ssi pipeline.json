@@ -112,12 +112,6 @@
 							}
 						}
 					}
-				],
-				"outputs": [
-					{
-						"referenceName": "csv_files_in_datalake",
-						"type": "DatasetReference"
-					}
 				]
 			},
 			{
