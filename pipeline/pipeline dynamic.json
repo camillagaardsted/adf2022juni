@@ -1,0 +1,32 @@
+{
+	"name": "pipeline dynamic",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": []
+			}
+		],
+		"variables": {
+			"schemaName": {
+				"type": "String",
+				"defaultValue": "ext"
+			},
+			"truncateFirst": {
+				"type": "Boolean",
+				"defaultValue": "1"
+			},
+			"tableNames": {
+				"type": "Array",
+				"defaultValue": [
+					"{'Customer'",
+					"'Booking'",
+					"'Product'}"
+				]
+			}
+		},
+		"annotations": []
+	}
+}
