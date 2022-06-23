@@ -1,0 +1,7 @@
+SELECT TOP (100) [sensorid]
+,[timestamp]
+,[temperature_from_humidity]
+,[temperature_from_pressure]
+,[humidity]
+,[pressure]
+ FROM [EXT].[RaspData]
